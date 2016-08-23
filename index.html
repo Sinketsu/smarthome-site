@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<title>Безопасный Умный Дом</title>
+	 
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/my.css" rel="stylesheet">
+	</head>
+	
+	<body style="padding-top:80px;">
+		<!-- NAVBAR -->
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Menu</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<p class="navbar-text" style="padding-left: 5px;"><big>Безопасный Умный Дом</big></p>
+				</div>
+				
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="index.html">Главная</a></li>
+						<li><a href="#">Камера</a></li>
+						<li><a href="#">Выйти</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- END NAVBAR -->
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h3 class="text-center">ТЕМПЕРАТУРА</h3>
+				<div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="text-align:center;">
+					<h4 class="text-center">ТЕКУЩАЯ</h4>
+					<br>
+					<h1 style="font-size: 64px">32.1 &deg;C</h1>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="text-align:center;">
+					<h4 class="text-center">УСТАНОВЛЕНА</h4>
+					<div>
+						<input class="knob" data-width="200" data-cursor=true data-fgColor="#222222" data-thickness=.4 value="29" data-angleOffset="180" data-displayPrevious=true data-min="10" data-max="50" >
+					</div>
+					<div style="padding-top: 10px">
+						<button type="button" class="btn btn-primary text-center">УСТАНОВИТЬ</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+		
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.knob.js"></script>
+		<script>
+            $(function() {
+                $(".knob").knob();
+            });
+        </script>
+	</body>
+	
+</html>
