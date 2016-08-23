@@ -1,0 +1,25 @@
+body {
+	background-color: #222222;
+	padding-top: 20px;
+}
+label {
+	color: #aaaaaa;
+}
+h1 {
+	color: #aaaaaa;
+}
+
+@media screen and (max-height: 767px)
+{
+	.main {
+		padding-top: 20px;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: )
+{
+	.main {
+		padding-top: 70px;
+	}
+}
+
