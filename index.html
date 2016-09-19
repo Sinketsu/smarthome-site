@@ -8,6 +8,7 @@
 		<title>Безопасный Умный Дом</title>
 	 
 		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-switch.min.css" rel="stylesheet">
 	</head>
 	
 	<body style="padding-top:80px;">
@@ -57,6 +58,21 @@
 					</div>
 				</div>
 			</div>
+			<br>
+			<div class="row">
+				<div class="col-xs-8 col-sm-4 col-md-4 col-lg-4" >
+		            <h4 id="door_label">Дверь открыта</h4>
+		        </div>
+		        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 " >
+		            <input name="door-checkbox" type="checkbox" checked>
+				</div>
+				<div class="col-xs-8 col-sm-4 col-md-4 col-lg-4" >
+		            <h4 id="light_label">Свет выключен</h4>
+		        </div>
+		        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 " >
+		            <input name="light-checkbox" type="checkbox" >
+				</div>
+			</div>
 		</div>
 
 		
@@ -64,10 +80,41 @@
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery.knob.js"></script>
+		<script src="js/bootstrap-switch.min.js"></script>
 		<script>
             $(function() {
                 $(".knob").knob();
             });
+        </script>
+        <script>
+            $(document).ready ( function(){
+				$("[name='door-checkbox']").bootstrapSwitch();
+				$("[name='light-checkbox']").bootstrapSwitch();
+			});   
+        </script>
+        <script>
+        	$('input[name="door-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
+			  	var c = document.getElementById('door_label');
+			  	if (state)
+			  	{
+			  		c.innerHTML = "Дверь открыта";
+			  	}
+			  	else
+			  	{
+			  		c.innerHTML = "Дверь закрыта";
+			  	}
+			});
+			$('input[name="light-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
+			  	var c = document.getElementById('light_label');
+			  	if (state)
+			  	{
+			  		c.innerHTML = "Свет включен";
+			  	}
+			  	else
+			  	{
+			  		c.innerHTML = "Свет выключен";
+			  	}
+			});
         </script>
 	</body>
 	
