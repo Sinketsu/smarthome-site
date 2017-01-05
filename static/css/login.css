@@ -1,0 +1,36 @@
+body {
+	background-color: #222222;
+	padding-top: 20px;
+}
+label {
+	color: #aaaaaa;
+}
+h1 {
+	color: #aaaaaa;
+}
+
+.br0 {
+	border-radius: 0px !important;
+}
+
+@media screen and (max-height: 500px)
+{
+	.main {
+		padding-top: 20px;
+	}
+}
+
+@media screen and (min-height: 501px) and (max-height: 799px)
+{
+	.main {
+		padding-top: 70px;
+	}
+}
+
+@media screen and (min-height: 800px)
+{
+	.main {
+		padding-top: 130px;
+	}
+}
+
