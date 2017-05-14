@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.css">
+
+<style>
+body {
+  padding: 0px;
+}
+</style>
+
+<style>
+.radar-chart .area {
+  fill-opacity: 0.7;
+}
+.radar-chart.focus .area {
+  fill-opacity: 0.3;
+}
+.radar-chart.focus .area.focused {
+  fill-opacity: 0.9;
+}
+.area.germany, .germany .circle {
+  fill: #FFD700;
+  stroke: none;
+}
+</style>
+
+<script type="text/javascript" src="http://ff.kis.v2.scr.kaspersky-labs.com/8F5EC07B-40A2-A742-BE96-DAAA7D9D8A89/main.js" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="http://ff.kis.v2.scr.kaspersky-labs.com/98A8D9D7AAAD-69EB-247A-2A04-B70CE5F8/abn/main.css"/><script src="http://d3js.org/d3.v3.js"></script>
+<script src="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<script>
+RadarChart.defaultConfig.color = function() {};
+RadarChart.defaultConfig.radius = 3;
+RadarChart.defaultConfig.w = 400;
+RadarChart.defaultConfig.h = 400;
+</script>
+
+<span></span>
+
+<script>
+var data = [
+  {
+    className: 'germany', // optional can be used for styling
+    axes: [
+      {axis: "0", value: 13}, 
+      {axis: "1", value: 6}, 
+      {axis: "2", value: 5},  
+      {axis: "3", value: 9},  
+      {axis: "4", value: 2},
+      {axis: "5", value: 13}, 
+      {axis: "6", value: 6}, 
+      {axis: "7", value: 5},  
+      {axis: "8", value: 9},  
+      {axis: "9", value: 2}
+    ]
+  }
+];
+
+function update_data() {
+  var req = new XMLHttpRequest();
+  req.open("GET", "/chart_update", false);
+  req.send(null);
+  var text = req.responseText;
+  var arr = text.split(' ')
+
+  return [
+    data.map(function(d) {
+      return {
+        className: d.className,
+        axes: [
+        {axis: "0", value: Number(arr[0])}, 
+        {axis: "1", value: Number(arr[1])}, 
+        {axis: "2", value: Number(arr[2])},  
+        {axis: "3", value: Number(arr[3])},  
+        {axis: "4", value: Number(arr[4])},
+        {axis: "5", value: Number(arr[5])}, 
+        {axis: "6", value: Number(arr[6])}, 
+        {axis: "7", value: Number(arr[7])},  
+        {axis: "8", value: Number(arr[8])},  
+        {axis: "9", value: Number(arr[9])}
+      ]
+      };
+    }),
+    data.map(function(d) {
+      return {
+        className: d.className,
+        axes: [
+        {axis: "0", value: Number(arr[10])}, 
+        {axis: "1", value: Number(arr[11])}, 
+        {axis: "2", value: Number(arr[12])},  
+        {axis: "3", value: Number(arr[13])},  
+        {axis: "4", value: Number(arr[14])},
+        {axis: "5", value: Number(arr[15])}, 
+        {axis: "6", value: Number(arr[16])}, 
+        {axis: "7", value: Number(arr[17])},  
+        {axis: "8", value: Number(arr[18])},  
+        {axis: "9", value: Number(arr[19])}
+      ]
+      };
+    })
+  ];
+}
+</script>
+
+<script>
+var chart = RadarChart.chart();
+var cfg = chart.config(); // retrieve default config
+var svg = d3.select('body').append('svg')
+  .attr('width', window.innerWidth)
+  .attr('height', cfg.h + cfg.h / 4);
+
+chart.config({w: cfg.w / 1.5, h: cfg.h / 1.5, axisText: true, levels: 0, circles: false});
+cfg = chart.config();
+function render() {
+  var game = svg.selectAll('g.game').data(
+    update_data()
+  );
+  var add = 100;
+  game.enter().append('g').classed('game', 1);
+  game
+    .attr('transform', function(d, i) { return 'translate('+ (window.innerWidth / 2 - cfg.w - add + i * (cfg.w + 2*add)) +','+ 100 +')'; })
+    .call(chart);
+
+  setTimeout(render, 2000);
+}
+render();
+</script>
